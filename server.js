@@ -16,12 +16,36 @@ app.get("/users", async (req, res) => {
   //   { id: 2, name: "Bob Allen" },
   //   { id: 3, name: "Mary Wilson" },
   // ];
+  const limit = +req.query.limit || 10;
 
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/users?_limit=${limit}`
+  );
   const users = await response.json();
 
   res.send(`<h1 class="text-2xl font-bold my-4">Users</h1>
   <ul>${users.map((user) => `<li>${user.name}</li>`).join("")}</ul>`);
+});
+// ////////////////////////////////////////////////////////////////////////
+// Handle POST request for temp conversion
+app.post("/convert", (req, res) => {
+  const fahrenheit = parseFloat(req.body.fahrenheit);
+  const celsius = (fahrenheit - 32) * (5 / 9);
+  res.send(
+    `<p>
+  ${fahrenheit} degrees Fahrenheit is equal to ${celsius.toFixed(
+      2
+    )} degrees Celsius.
+  </p>`
+  );
+});
+// //////////////////////////////////////////////////////////////////
+// Handle GET request for polling example
+let counter = 0;
+app.get("/poll", (req, res) => {
+  counter++;
+  const data = { value: counter };
+  res.json(data);
 });
 
 // Start the server

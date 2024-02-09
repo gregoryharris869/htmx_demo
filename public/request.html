@@ -15,7 +15,20 @@
   </head>
   <body>
     <div class="text-center">
-      <span hx-get="/poll" hx-trigger="every 5s"></span>
+      <h1 class="my-5 text-2xl font-bold">Simple Request Example.</h1>
+      <button
+        hx-get="/users"
+        hx-target="#users"
+        hx-indicator="#loading"
+        hx-vals='{"limit":5}'
+        class="px-3 py-2 my-5 text-white bg-blue-500 rounded-lg"
+      >
+        Fetch Users
+      </button>
+      <span class="htmx-indicator" id="loading">
+        <img class="h-10 m-auto" src="img/loader.gif" alt="Loading..." />
+      </span>
+      <div id="users"></div>
     </div>
   </body>
 </html>
