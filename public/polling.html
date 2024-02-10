@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- HTMX -->
+    <script
+      src="https://unpkg.com/htmx.org@1.9.10"
+      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Tailwind -->
+    <link href="./output.css" rel="stylesheet" />
+    <title>HTMX Demo</title>
+  </head>
+  <body
+    class="flex items-center justify-center min-h-screen text-white bg-blue-900"
+  >
+    <div class="text-center">
+      <h1 class="mb-4 text-xl">Weather In New York</h1>
+      <p class="text-5xl">
+        <span hx-get="/get-temperature" hx-trigger="every 2s">Loading...</span>
+      </p>
+    </div>
+  </body>
+</html>
