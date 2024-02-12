@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- HTMX -->
+    <script
+      src="https://unpkg.com/htmx.org@1.9.10"
+      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Tailwind -->
+    <link href="./output.css" rel="stylesheet" />
+    <title>HTMX Demo</title>
+  </head>
+  <body class="bg-blue-900">
+    <div class="container max-w-lg py-8 mx-auto">
+      <span class="htmx-indicator" id="loading">
+        <img src="img/loader.gif" alt="Loading..." class="h-10 m-auto" />
+      </span>
+      <div
+        class="max-w-lg p-4 m-auto text-white bg-gray-900 border border-gray-600 rounded-lg"
+      >
+        <h3 class="mb-3 text-2xl text-center">Search Contacts</h3>
+        <input
+          class="w-full p-2 mb-5 bg-gray-800 border border-gray-600 rounded-lg"
+          type="search"
+          name="search"
+          placeholder="Begin Typing To Search Users..."
+          hx-post="/search/api"
+          hx-triggers="input changed delay:500ms, search"
+          hx-target="#search-results"
+          hx-indicator="#loading"
+        />
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="text-white bg-gray-800">
+            <tr>
+              <th
+                scope="col"
+                class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase"
+              >
+                Name
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase"
+              >
+                Email
+              </th>
+            </tr>
+          </thead>
+          <tbody id="search-results" class="divide-y divide-gray-600">
+            <!-- Your search results go here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
